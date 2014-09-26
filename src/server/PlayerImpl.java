@@ -1,9 +1,12 @@
 package server;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import common.Player;
 
 
-public class PlayerImpl implements Player {
+public class PlayerImpl extends UnicastRemoteObject implements Player {
 	
 	private final String name;
 	private final String password;
@@ -15,7 +18,7 @@ public class PlayerImpl implements Player {
 	 * Creates a new Player with the specified name and
 	 * password.
 	 */
-	public PlayerImpl(String name, String password) {
+	public PlayerImpl(String name, String password) throws RemoteException {
 		this.name     = name;
 		this.password = password;
 	}
@@ -31,21 +34,21 @@ public class PlayerImpl implements Player {
 	/**
 	 * @return player's name
 	 */
-	public String getName() { return name; }
+	public String getName() throws RemoteException { return name; }
 
 	/**
 	 * @return number of games played
 	 */
-	public int getTotalGames() { return totalGames; }
+	public int getTotalGames() throws RemoteException { return totalGames; }
 
 	/**
 	 * @return number of games won
 	 */
-	public int getWins() { return wins; }
+	public int getWins() throws RemoteException { return wins; }
 
 	/**
 	 * @return number of games lost
 	 */
-	public int getLosses() { return losses; }
+	public int getLosses() throws RemoteException { return losses; }
 
 }

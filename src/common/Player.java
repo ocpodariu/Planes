@@ -1,11 +1,14 @@
 package common;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-public interface Player {
+
+public interface Player extends Remote {
 	
-	String getName();
-	int getTotalGames();
-	int getWins();
-	int getLosses();
+	String getName() throws RemoteException;
+	int getTotalGames() throws RemoteException;
+	int getWins() throws RemoteException;
+	int getLosses() throws RemoteException;
 	
 }

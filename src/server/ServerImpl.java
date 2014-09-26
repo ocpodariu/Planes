@@ -1,5 +1,7 @@
 package server;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +9,11 @@ import common.Player;
 import common.Server;
 
 
-public class ServerImpl implements Server {
+public class ServerImpl extends UnicastRemoteObject implements Server {
 	
 	private List<PlayerImpl> players;
 	
-	public ServerImpl() {
+	public ServerImpl() throws RemoteException {
 		players = new ArrayList<PlayerImpl>();
 	}
 
@@ -22,7 +24,7 @@ public class ServerImpl implements Server {
 	 * @param password password of this account
 	 * @return true if the registration was successful; false otherwise
 	 */
-	public boolean registerPlayer(String name, String password) {
+	public boolean registerPlayer(String name, String password) throws RemoteException {
 		// If there's already a player registered with this name, exit.
 		for (int i = 0; i < players.size(); i++)
 			if (players.get(i).getName() == name)
@@ -41,7 +43,7 @@ public class ServerImpl implements Server {
 	 * @return reference to a player's account if the credentials
 	 * are correct; otherwise, return null.
 	 */
-	public Player login(String name, String password) {
+	public Player login(String name, String password) throws RemoteException {
 		// Find the player with this name and check if the password matches.
 		PlayerImpl p = null;
 		for (int i = 0; i < players.size(); i++) {
@@ -59,7 +61,7 @@ public class ServerImpl implements Server {
 	 * Creates an array with all the players' statistics and returns it.
 	 * @return an array containing player statistics
 	 */
-	public String[] getPlayers() {
+	public String[] getPlayers() throws RemoteException {
 		String[] playerStats = new String[players.size()];
 		
 		PlayerImpl p;

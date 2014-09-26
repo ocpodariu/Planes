@@ -3,7 +3,7 @@ package common;
 
 public class Constants {
 	
-	private static final String RMI_NAME = "Planes";
-	private static final int    RMI_PORT = 5012;
+	public static final String RMI_NAME = "Planes";
+	public static final int    RMI_PORT = 5012;
 
 }
