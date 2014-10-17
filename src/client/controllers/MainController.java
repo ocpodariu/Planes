@@ -1,5 +1,8 @@
 package client.controllers;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -11,6 +14,7 @@ public class MainController {
 	private Client client;
 	private Window window;
 	private LoginController loginController;
+	private HomeController  homeController;
 	
 	// Panel codes. They are used by the controllers to change
 	// the current view.
@@ -28,6 +32,7 @@ public class MainController {
 		client = new Client();
 		
 		loginController = new LoginController(this);
+		homeController  = new HomeController(this);
 	}
 	
 	/**
@@ -35,7 +40,11 @@ public class MainController {
 	 */
 	public void start() {
 		window = new Window();
-		window.setVisible(true);
+		window.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				exit();
+			}
+		});
 		changeView(LOGIN);
 	}
 	
@@ -57,6 +66,7 @@ public class MainController {
 		// corresponding sub-controller.
 		switch(option) {
 		case LOGIN: panel = loginController.getPanel(); break;
+		case HOME:  panel = homeController.getPanel();  break;
 		default: panel = null;
 		}
 		
@@ -86,6 +96,21 @@ public class MainController {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() { window.displayInformativeMessage(title, message); }
 		});
+	}
+	
+	/**
+	 * Disposes the view, releasing all the resources by it.
+	 */
+	public void disposeView() {
+		window.setVisible(false);
+		window.dispose();
+	}
+	
+	/**
+	 * Closes the application.
+	 */
+	public void exit() {
+		System.exit(0);
 	}
 
 	/**

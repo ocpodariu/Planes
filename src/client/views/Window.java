@@ -18,7 +18,6 @@ public class Window extends JFrame {
 	 */
 	public Window() {
 		super(TITLE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(X, Y);
 		setLayout(new FlowLayout());
 		setResizable(false);
