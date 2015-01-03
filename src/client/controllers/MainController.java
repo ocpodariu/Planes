@@ -15,6 +15,7 @@ public class MainController {
 	private Window window;
 	private LoginController loginController;
 	private HomeController  homeController;
+	private AboutController aboutController;
 	
 	// Panel codes. They are used by the controllers to change
 	// the current view.
@@ -33,6 +34,7 @@ public class MainController {
 		
 		loginController = new LoginController(this);
 		homeController  = new HomeController(this);
+		aboutController = new AboutController(this);
 	}
 	
 	/**
@@ -67,6 +69,7 @@ public class MainController {
 		switch(option) {
 		case LOGIN: panel = loginController.getPanel(); break;
 		case HOME:  panel = homeController.getPanel();  break;
+		case ABOUT: panel = aboutController.getPanel(); break;
 		default: panel = null;
 		}
 		

@@ -49,7 +49,7 @@ public class HomeController {
 		homePanel.setExitBtnActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainController.disposeView();
-				System.exit(0);
+				mainController.exit();
 			}
 		});
 	}
