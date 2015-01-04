@@ -75,4 +75,19 @@ public class Client {
 		}
 	}
 	
+	/**
+	 * Sends a request to the server to obtain the players'
+	 * statistics.
+	 * @return array containing the players' statistics.
+	 * 			Each element contains information about
+	 * 			one player.
+	 */
+	public String[] getPlayers() {
+		try {
+			return server.getPlayers();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

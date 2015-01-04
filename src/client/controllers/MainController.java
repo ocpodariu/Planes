@@ -13,9 +13,10 @@ import client.views.Window;
 public class MainController {
 	private Client client;
 	private Window window;
-	private LoginController loginController;
-	private HomeController  homeController;
-	private AboutController aboutController;
+	private LoginController       loginController;
+	private HomeController        homeController;
+	private LeaderboardController leaderboardController;
+	private AboutController       aboutController;
 	
 	// Panel codes. They are used by the controllers to change
 	// the current view.
@@ -32,9 +33,10 @@ public class MainController {
 	public MainController() {
 		client = new Client();
 		
-		loginController = new LoginController(this);
-		homeController  = new HomeController(this);
-		aboutController = new AboutController(this);
+		loginController       = new LoginController(this);
+		homeController        = new HomeController(this);
+		leaderboardController = new LeaderboardController(this);
+		aboutController       = new AboutController(this);
 	}
 	
 	/**
@@ -67,9 +69,10 @@ public class MainController {
 		// Get a reference to the view(panel) from the
 		// corresponding sub-controller.
 		switch(option) {
-		case LOGIN: panel = loginController.getPanel(); break;
-		case HOME:  panel = homeController.getPanel();  break;
-		case ABOUT: panel = aboutController.getPanel(); break;
+		case LOGIN:       panel = loginController.getPanel();       break;
+		case HOME:        panel = homeController.getPanel();        break;
+		case LEADERBOARD: panel = leaderboardController.getPanel(); break;
+		case ABOUT:       panel = aboutController.getPanel();       break;
 		default: panel = null;
 		}
 		
