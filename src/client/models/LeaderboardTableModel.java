@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class LeaderboardTableModel extends AbstractTableModel {
 	
-	private String[] columnNames = {"Username", "Wins", "Losses", "Total games"};
+	private String[] columnNames = {"Username", "Total games", "Wins", "Losses"};
 	private Object[][] data;
 	
 	public LeaderboardTableModel(Object[][] data) {

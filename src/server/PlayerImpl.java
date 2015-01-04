@@ -21,7 +21,7 @@ public class PlayerImpl extends UnicastRemoteObject implements Player {
 		this.name     = name;
 		this.password = password;
 	}
-
+	
 	/**
 	 * Checks if the password is correct. 
 	 * @return <em>true</em> if the password is correct;
@@ -38,5 +38,23 @@ public class PlayerImpl extends UnicastRemoteObject implements Player {
 	public int getWins() throws RemoteException { return wins; }
 
 	public int getLosses() throws RemoteException { return losses; }
+	
+	/**
+	 * Method accessible only on the server side,
+	 * used for saving the player profiles to the HDD.
+	 * @return player's password
+	 */
+	public String getPassword() { return password; }
+	
+	/**
+	 * Method accessible only on the server side,
+	 * used for loading the player profiles from the HDD.
+	 * @return player's password
+	 */
+	public void setStats(int totalGames, int wins, int losses) {
+		this.totalGames = totalGames;
+		this.wins       = wins;
+		this.losses     = losses;
+	}
 
 }
