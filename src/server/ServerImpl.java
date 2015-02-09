@@ -75,14 +75,14 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 		File output = new File(filename);
 		
 		try {
-			FileWriter outputWriter = new FileWriter(output, false);
+			FileWriter outputWriter = new FileWriter(output, true);
 			
 			try {
 				outputWriter.write(players.get(index).getName() + " ");
 				outputWriter.write(players.get(index).getPassword() + " ");
 				outputWriter.write(players.get(index).getTotalGames() + " ");
 				outputWriter.write(players.get(index).getWins() + " ");
-				outputWriter.write(players.get(index).getLosses());
+				outputWriter.write(players.get(index).getLosses() + " ");
 				outputWriter.write("\n");
 			} finally {
 				outputWriter.close();
@@ -107,7 +107,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 					outputWriter.write(players.get(i).getPassword() + " ");
 					outputWriter.write(players.get(i).getTotalGames() + " ");
 					outputWriter.write(players.get(i).getWins() + " ");
-					outputWriter.write(players.get(i).getLosses());
+					outputWriter.write(players.get(i).getLosses() + " ");
 					outputWriter.write("\n");
 				}
 			} finally {
