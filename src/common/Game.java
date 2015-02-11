@@ -19,12 +19,14 @@ public interface Game extends Remote {
 	 * Returns the board corresponding to the player which called
 	 * the method.
 	 * @param playerName name of the player calling this method
-	 * @return an array of booleans describing the board:
-	 * 			<br><b>true</b> - location occupied by plane;
-	 * 			<br><b>false</b> - empty location.
+	 * @return an array of integers describing the board:
+	 * 			<br><b>0</b> - empty location;
+	 * 			<br><b>1</b> - location occupied by plane;
+	 * 			<br><b>2</b> - empty location already attacked by opponent;
+	 * 			<br><b>3</b> - location occupied by plane already attacked by opponent.
 	 * @throws RemoteException
 	 */
-	boolean[][] getBoard(String playerName) throws RemoteException;
+	int[][] getBoard(String playerName) throws RemoteException;
 	
 	/**
 	 * Checks if it's the calling player's turn.
@@ -42,8 +44,10 @@ public interface Game extends Remote {
 	 * @param playerName name of the player calling this method
 	 * @param column X-coordinate of the location
 	 * @param line Y-coordinate of the location
-	 * @return {@link Constants#GAME_ATTACK_HIT} if the attack was successful <br>
+	 * @return {@link Constants#GAME_ATTACK_INVALID} if it's not this player's turn <br>
+	 * 		   {@link Constants#GAME_ATTACK_HIT} if the attack was successful <br>
 	 * 		   {@link Constants#GAME_ATTACK_MISS} if the attack was unsuccessful <br>
+	 * 		   
 	 * @throws RemoteException
 	 */
 	int attack(String playerName, int column, int line) throws RemoteException;
