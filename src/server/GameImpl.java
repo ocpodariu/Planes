@@ -25,6 +25,9 @@ public class GameImpl extends UnicastRemoteObject implements Game {
     /** Total number of maps available */
     private static final int MAP_COUNT = 5;
     
+    /** Every time a player hits an enemy plane, he gets this many points */
+    private static final int SCORE_HIT = 100;
+    
     /** Name of Player One. */
 	private final String playerOne;
 	
@@ -48,6 +51,12 @@ public class GameImpl extends UnicastRemoteObject implements Game {
 	 * 		<br><b>3</b> - location occupied by plane already attacked by opponent.
 	 */
 	private int[][] boardP2;
+	
+	/** Player One's score. */
+	private int scoreP1;
+	
+	/** Player Two's score. */
+	private int scoreP2;
 	
 	/**
 	 * Indicates whose turn it is:
@@ -160,6 +169,22 @@ public class GameImpl extends UnicastRemoteObject implements Game {
 	}
 
 	@Override
+	public int getScore(String playerName) throws RemoteException {
+		if (playerName.equals(playerOne))
+			return scoreP1;
+		else
+			return scoreP2;
+	}
+
+	@Override
+	public int getOpponentScore(String playerName) throws RemoteException {
+		if (playerName.equals(playerOne))
+			return scoreP2;
+		else
+			return scoreP1;
+	}
+	
+	@Override
 	public int attack(String playerName, int column, int line) throws RemoteException {
 		// If Player One wants to attack
 		if (playerName.equals(playerOne)) {
@@ -168,6 +193,9 @@ public class GameImpl extends UnicastRemoteObject implements Game {
 				// If he has hit an enemy plane
 				if (boardP2[line][column] == 1) {
 					// It's still his turn, so turnStatus doesn't change
+					
+					// Update score
+					scoreP1 += SCORE_HIT;
 					
 					// Update opponent's board to indicate an attacked plane
 					boardP2[line][column] = 3;
@@ -197,6 +225,9 @@ public class GameImpl extends UnicastRemoteObject implements Game {
 				// If he has hit an enemy plane
 				if (boardP1[line][column] == 1) {
 					// It's still his turn, so turnStatus doesn't change
+					
+					// Update score
+					scoreP2 += SCORE_HIT;
 					
 					// Update opponent's board to indicate an attacked plane
 					boardP1[line][column] = 3;

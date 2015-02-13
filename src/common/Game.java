@@ -38,6 +38,24 @@ public interface Game extends Remote {
 	boolean getTurnStatus(String playerName) throws RemoteException;
 	
 	/**
+	 * Returns the score corresponding to the player which called
+	 * the method.
+	 * @param playerName name of the player calling this method
+	 * @return player's score
+	 * @throws RemoteException
+	 */
+	int getScore(String playerName) throws RemoteException;
+	
+	/**
+	 * Depending on which player calls this method, it returns
+	 * the other player's score i.e. the opponent's score.
+	 * @param playerName name of the player calling this method
+	 * @return opponent's score
+	 * @throws RemoteException
+	 */
+	int getOpponentScore(String playerName) throws RemoteException;
+	
+	/**
 	 * Attacks the specified location on the opponent's board and
 	 * returns the result of the attack i.e. if he has hit
 	 * an enemy plane or not.
@@ -51,5 +69,5 @@ public interface Game extends Remote {
 	 * @throws RemoteException
 	 */
 	int attack(String playerName, int column, int line) throws RemoteException;
-
+	
 }
