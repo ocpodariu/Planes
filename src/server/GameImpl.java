@@ -23,7 +23,7 @@ public class GameImpl extends UnicastRemoteObject implements Game {
     private static final String MAP_FILE_EXTENSION = ".txt";
 	
     /** Total number of maps available */
-    private static final int MAP_COUNT = 10;
+    private static final int MAP_COUNT = 5;
     
     /** Name of Player One. */
 	private final String playerOne;
