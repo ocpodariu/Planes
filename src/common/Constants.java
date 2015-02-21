@@ -12,5 +12,8 @@ public class Constants {
 	
 	public static final int BOARD_WIDTH  = 8;
 	public static final int BOARD_HEIGHT = 8;
+	
+	public static final int GAME_ROOM_FULL      = -1;
+	public static final int GAME_ROOM_NOT_FOUND = -2;
 
 }

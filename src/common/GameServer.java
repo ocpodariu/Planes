@@ -29,7 +29,8 @@ public interface GameServer extends Remote {
 	 * @param roomNumber number of the room
 	 * @param playerName name of the player calling this method
 	 * @return - the room number, if successful; <br>
-	 * 		   - {@link Constants#GAME_ROOM_FULL}, otherwise.
+	 * 		   - {@link Constants#GAME_ROOM_FULL}, if the room is full; <br>
+	 * 		   - {@link Constants#GAME_ROOM_NOT_FOUND}, if the room doesn't exist.
 	 * @throws RemoteException
 	 */
 	int joinRoom(int roomNumber, String playerName) throws RemoteException;
