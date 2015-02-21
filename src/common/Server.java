@@ -29,5 +29,12 @@ public interface Server extends Remote {
 	 * @return an array containing player statistics
 	 */
 	String[] getPlayers() throws RemoteException;
+	
+	/**
+	 * Returns a reference to the GameServer.
+	 * @return reference to game server
+	 * @throws RemoteException
+	 */
+	GameServer connectToGameServer() throws RemoteException;
 
 }

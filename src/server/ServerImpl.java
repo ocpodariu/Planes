@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.GameServer;
 import common.Player;
 import common.Server;
 
@@ -18,9 +19,13 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 	private List<PlayerImpl> players;
 	private String filename = "players.dat";
 	
+	private final GameServer gameServer;
+	
 	public ServerImpl() throws RemoteException {
 		players = new ArrayList<PlayerImpl>();
 		loadPlayers();
+		
+		gameServer = new GameServerImpl();
 	}
 
 	public boolean registerPlayer(String name, String password) throws RemoteException {
@@ -143,6 +148,11 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 				inputReader.close();
 			}
 		} catch (Exception e) {}
+	}
+
+	@Override
+	public GameServer connectToGameServer() throws RemoteException {
+		return gameServer;
 	}
 
 }
